@@ -14,4 +14,4 @@
 (define-cpointer-type _int*)
 (define-cpointer-type _uint*)
 
-(define-ffi-definer define-tcod (ffi-lib "libtcod"))
+(define-ffi-definer define-tcod (ffi-lib "libtcod" '("1.6" #f)))
