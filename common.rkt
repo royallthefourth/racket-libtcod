@@ -13,5 +13,7 @@
 (define-cpointer-type _int32*)
 (define-cpointer-type _int*)
 (define-cpointer-type _uint*)
+(define-cpointer-type _float*)
+(define-cpointer-type _void*)
 
 (define-ffi-definer define-tcod (ffi-lib "libtcod" '("1.6" #f)))
