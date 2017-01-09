@@ -2,7 +2,11 @@
 
 (require ffi/unsafe
          ffi/unsafe/define
-         "common.rkt")
+         "common.rkt"
+         "list.rkt"
+         "color.rkt"
+         "console.rkt"
+         "image.rkt")
 (provide (all-defined-out))
 
 (define _bool _uint8*)
