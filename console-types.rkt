@@ -221,7 +221,7 @@
 (define-cstruct _tcod-key-t
   ([vk _tcod-keycode-t]
    [c _uint8]
-   [b _string]
+   [b _symbol]
    [pressed _bool]
    [lalt _bool]
    [lctrl _bool]
