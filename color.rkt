@@ -42,8 +42,8 @@
            tcod-color-levels)))
 
 ; constructors
-(define-tcod tcod-color-rgb (_fun _uint8 _uint8 _uint8 -> _tcod-color-t) #:c-id TCOD_color_RGB)
-(define-tcod tcod-color-hsv (_fun _float _float _float -> _tcod-color-t) #:c-id TCOD_color_HSV)
+(define-tcod tcod-color-rgb (_fun (r : _uint8) (g : _uint8) (b : _uint8) -> _tcod-color-t) #:c-id TCOD_color_RGB)
+(define-tcod tcod-color-hsv (_fun (r : _float) (g : _float) (b : _float) -> _tcod-color-t) #:c-id TCOD_color_HSV)
 
 ; basic operations
 (define-tcod tcod-color-equals (_fun _tcod-color-t _tcod-color-t -> _bool) #:c-id TCOD_color_equals)
@@ -51,22 +51,22 @@
 (define-tcod tcod-color-subtract (_fun _tcod-color-t _tcod-color-t -> _tcod-color-t) #:c-id TCOD_color_subtract)
 (define-tcod tcod-color-multiply (_fun _tcod-color-t _tcod-color-t -> _tcod-color-t) #:c-id TCOD_color_multiply)
 (define-tcod tcod-color-multiply-scalar (_fun _tcod-color-t _float -> _tcod-color-t) #:c-id TCOD_color_multiply_scalar)
-(define-tcod tcod-color-lerp (_fun _tcod-color-t _tcod-color-t _float -> _tcod-color-t) #:c-id TCOD_color_lerp)
+(define-tcod tcod-color-lerp (_fun _tcod-color-t _tcod-color-t (coef : _float) -> _tcod-color-t) #:c-id TCOD_color_lerp)
 
 ; HSV transformations
-(define-tcod tcod-color-set-hsv (_fun _tcod-color-t-pointer _float _float _float -> _void) #:c-id TCOD_color_set_HSV)
-(define-tcod tcod-color-get-hsv (_fun _tcod-color-t _float* _float* _float* -> _void) #:c-id TCOD_color_get_HSV)
+(define-tcod tcod-color-set-hsv (_fun _tcod-color-t-pointer (hue : _float) (saturation : _float) (value : _float) -> _void) #:c-id TCOD_color_set_HSV)
+(define-tcod tcod-color-get-hsv (_fun _tcod-color-t (hue : _float*) (saturation : _float*) (value : _float*) -> _void) #:c-id TCOD_color_get_HSV)
 (define-tcod tcod-color-get-hue (_fun _tcod-color-t -> _float) #:c-id TCOD_color_get_hue)
-(define-tcod tcod-color-set-hue (_fun _tcod-color-t-pointer _float -> _void) #:c-id TCOD_color_set_hue)
+(define-tcod tcod-color-set-hue (_fun _tcod-color-t-pointer (hue : _float) -> _void) #:c-id TCOD_color_set_hue)
 (define-tcod tcod-color-get-saturation (_fun _tcod-color-t -> _float) #:c-id TCOD_color_get_saturation)
-(define-tcod tcod-color-set-saturation (_fun _tcod-color-t-pointer _float -> _void) #:c-id TCOD_color_set_saturation)
+(define-tcod tcod-color-set-saturation (_fun _tcod-color-t-pointer (saturation : _float) -> _void) #:c-id TCOD_color_set_saturation)
 (define-tcod tcod-color-get-value (_fun _tcod-color-t -> _float) #:c-id TCOD_color_get_value)
-(define-tcod tcod-color-set-value (_fun _tcod-color-t-pointer _float -> _void) #:c-id TCOD_color_set_value)
-(define-tcod tcod-color-shift-hue (_fun _tcod-color-t-pointer _float -> _void) #:c-id TCOD_color_shift_hue)
-(define-tcod tcod-color-scale-hsv (_fun _tcod-color-t-pointer _float _float -> _void) #:c-id TCOD_color_scale_HSV)
+(define-tcod tcod-color-set-value (_fun _tcod-color-t-pointer (value : _float) -> _void) #:c-id TCOD_color_set_value)
+(define-tcod tcod-color-shift-hue (_fun _tcod-color-t-pointer (s : _float) -> _void) #:c-id TCOD_color_shift_hue)
+(define-tcod tcod-color-scale-hsv (_fun _tcod-color-t-pointer (hue : _float*) (saturation : _float*) -> _void) #:c-id TCOD_color_scale_HSV)
 
 ; color map
-(define-tcod tcod-color-gen-map (_fun _tcod-color-t-pointer _int _tcod-color-t-pointer _int* -> _void) #:c-id TCOD_color_gen_map)
+(define-tcod tcod-color-gen-map (_fun (map : _tcod-color-t-pointer) (nb-key : _int) (key-color : _tcod-color-t-pointer) (key-index : _int*) -> _void) #:c-id TCOD_color_gen_map)
 
 ; color names
 (define tcod-black (tcod-color-rgb 0 0 0))
