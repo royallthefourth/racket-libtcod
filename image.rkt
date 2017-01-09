@@ -1,0 +1,28 @@
+#lang racket/base
+
+(require "common.rkt" "color.rkt" "console-types.rkt" ffi/unsafe)
+(provide (all-defined-out))
+
+(define _tcod-image-t* (_cpointer 'TCOD_image_t))
+
+(define-tcod tcod-image-new (_fun _int _int -> _tcod-image-t*) #:c-id TCOD_image_new)
+(define-tcod tcod-image-from-console (_fun _tcod-console-t* -> _tcod-image-t*) #:c-id TCOD_image_from_console)
+(define-tcod tcod-image-refresh-console (_fun _tcod-image-t* _tcod-console-t* -> _void) #:c-id TCOD_image_refresh_console)
+(define-tcod tcod-image-load (_fun _symbol -> _tcod-image-t*) #:c-id TCOD_image_load)
+(define-tcod tcod-image-clear (_fun _tcod-image-t* _tcod-color-t -> _void) #:c-id TCOD_image_clear)
+(define-tcod tcod-image-invert (_fun _tcod-image-t* -> _void) #:c-id TCOD_image_invert)
+(define-tcod tcod-image-hflip (_fun _tcod-image-t* -> _void) #:c-id TCOD_image_hflip)
+(define-tcod tcod-image-rotate90 (_fun _tcod-image-t* -> _void) #:c-id TCOD_image_rotate90)
+(define-tcod tcod-image-vflip (_fun _tcod-image-t* -> _void) #:c-id TCOD_image_vflip)
+(define-tcod tcod-image-save (_fun _tcod-image-t* _symbol -> _void) #:c-id TCOD_image_save)
+(define-tcod tcod-image-get-size (_fun _tcod-image-t* _int* _int* -> _void) #:c-id TCOD_image_get_size)
+(define-tcod tcod-image-get-pixel (_fun _tcod-image-t* _int _int -> _tcod-color-t) #:c-id TCOD_image_get_pixel)
+(define-tcod tcod-image-get-alpha (_fun _tcod-image-t* _int _int -> _int) #:c-id TCOD_image_get_alpha)
+(define-tcod tcod-image-get-mipmap-pixel (_fun _tcod-image-t* _float _float _float _float -> _tcod-color-t) #:c-id TCOD_image_get_mipmap_pixel)
+(define-tcod tcod-image-put-pixel (_fun _tcod-image-t* _int _int _tcod-color-t -> _void) #:c-id TCOD_image_put_pixel)
+(define-tcod tcod-image-blit (_fun _tcod-image-t* _tcod-console-t* _float _float _tcod-bkgnd-flag-t _float _float _float -> _void) #:c-id TCOD_image_blit)
+(define-tcod tcod-image-blit-rect (_fun _tcod-image-t* _tcod-console-t* _int _int _int _int _tcod-bkgnd-flag-t -> _void) #:c-id TCOD_image_blit_rect)
+(define-tcod tcod-image-blit-2x (_fun _tcod-image-t* _tcod-console-t* _int _int _int _int _int _int -> _void) #:c-id TCOD_image_blit_2x)
+(define-tcod tcod-image-delete (_fun _tcod-image-t* -> _void) #:c-id TCOD_image_delete)
+(define-tcod tcod-image-set-key-color (_fun _tcod-image-t* _tcod-color-t -> _void) #:c-id TCOD_image_set_key_color)
+(define-tcod tcod-image-is-pixel-transparent (_fun _tcod-image-t* _int _int -> _bool) #:c-id TCOD_image_is_pixel_transparent)
